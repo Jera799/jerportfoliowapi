@@ -5,7 +5,6 @@ function openLightbox(src) {
   lbImg.src = src;
   lb.style.display = 'flex';
 }
-
 function closeLightbox() {
   document.getElementById('lightbox').style.display = 'none';
 }
@@ -17,13 +16,20 @@ function scrollToSection(sectionId) {
 }
 
 // 🖼️ Preload Project Images
-const projectImages = [
-  'images/ss(1).png','images/ss(2).png','images/ss(3).png',
-  'images/ss(4).png','images/ss(5).png','images/ss(6).png','images/ss(7).png'
-];
+const projectImages = ['images/ss(1).png','images/ss(2).png','images/ss(3).png','images/ss(4).png','images/ss(5).png','images/ss(6).png','images/ss(7).png'];
 projectImages.forEach(src => { const img = new Image(); img.src = src; });
 
-// 💬 Quote (quotable.io)
+// 💬 Quotes (no API)
+const quotes = [
+  { text: "Stay positive, work hard, make it happen.", author: "Unknown" },
+  { text: "Creativity is intelligence having fun.", author: "Albert Einstein" },
+  { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+  { text: "Success is not final, failure is not fatal: It is the courage to continue that counts.", author: "Winston Churchill" },
+  { text: "Don't watch the clock; do what it does. Keep going.", author: "Sam Levenson" },
+  { text: "The best way to predict the future is to invent it.", author: "Alan Kay" },
+  { text: "Dream big and dare to fail.", author: "Norman Vaughan" }
+];
+
 const quoteText = document.getElementById("quote");
 const authorText = document.getElementById("author");
 const refreshBtn = document.getElementById("refresh-quote");
@@ -34,36 +40,22 @@ function fadeIn(el) {
   requestAnimationFrame(() => { el.style.opacity = 1; });
 }
 
-async function loadQuote() {
-  quoteText.textContent = "Loading quote...";
-  authorText.textContent = "";
-  quoteText.style.opacity = 0;
-  authorText.style.opacity = 0;
-
-  try {
-    const res = await fetch("https://api.quotable.io/random");
-    const data = await res.json();
-    quoteText.textContent = `"${data.content}"`;
-    authorText.textContent = `– ${data.author}`;
-    fadeIn(quoteText);
-    fadeIn(authorText);
-  } catch {
-    quoteText.textContent = `"Stay positive, work hard, make it happen."`;
-    authorText.textContent = "– Unknown";
-    fadeIn(quoteText);
-    fadeIn(authorText);
-  }
+function loadQuote() {
+  const q = quotes[Math.floor(Math.random() * quotes.length)];
+  quoteText.textContent = `"${q.text}"`;
+  authorText.textContent = `– ${q.author}`;
+  fadeIn(quoteText);
+  fadeIn(authorText);
 }
 
-// Load first quote and attach button
+// Load first quote and set button
 loadQuote();
 refreshBtn.addEventListener("click", loadQuote);
 
-// 🌤️ Weather API
+// 🌤️ Weather API (your existing code)
 const weatherEl = document.getElementById("weather");
 const apiKey = "61057798ffe98e2e6e9dfdea7ba21f57";
 const city = "Malolos City,PH";
-
 fetch(`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&units=metric&appid=${apiKey}`)
   .then(res => res.json())
   .then(data => {
