@@ -1,4 +1,6 @@
-// Lightbox
+// =============================
+// 🌌 Lightbox
+// =============================
 function openLightbox(src) {
   const lb = document.getElementById('lightbox');
   const lbImg = document.getElementById('lightbox-img');
@@ -10,7 +12,9 @@ function closeLightbox() {
   document.getElementById('lightbox').style.display = 'none';
 }
 
-// Scroll to Section (Dashboard)
+// =============================
+// 🧭 Scroll to Section (Dashboard)
+// =============================
 function scrollToSection(sectionId) {
   const section = document.getElementById(sectionId);
   if (section) {
@@ -18,7 +22,9 @@ function scrollToSection(sectionId) {
   }
 }
 
-// Preload Project Images (to avoid lightbox lag)
+// =============================
+// 🖼️ Preload Project Images (to avoid lightbox lag)
+// =============================
 const projectImages = [
   'images/ss(1).png',
   'images/ss(2).png',
@@ -28,13 +34,14 @@ const projectImages = [
   'images/ss(6).png',
   'images/ss(7).png'
 ];
-
 projectImages.forEach(src => {
   const img = new Image();
   img.src = src;
 });
 
-// ===== Quote API =====
+// =============================
+// 💬 Quote API (Motivational & Random)
+// =============================
 const quoteText = document.getElementById("quote");
 const authorText = document.getElementById("author");
 
@@ -46,7 +53,7 @@ refreshBtn.id = "refresh-quote";
 refreshBtn.style.marginTop = "10px";
 quoteSection.appendChild(refreshBtn);
 
-// Fade animation function
+// Fade animation helper
 function fadeIn(element) {
   element.style.opacity = 0;
   element.style.transition = "opacity 0.8s ease";
@@ -56,33 +63,38 @@ function fadeIn(element) {
 }
 
 // Function to load a quote
-function loadQuote() {
+async function loadQuote() {
   quoteText.textContent = "Loading quote...";
   authorText.textContent = "";
+  quoteText.style.opacity = 0;
+  authorText.style.opacity = 0;
 
-  fetch("https://api.quotable.io/random")
-    .then(res => res.json())
-    .then(data => {
-      quoteText.textContent = `"${data.content}"`;
-      authorText.textContent = `– ${data.author}`;
-      fadeIn(quoteText);
-      fadeIn(authorText);
-    })
-    .catch(() => {
-      quoteText.textContent = `"Creativity is intelligence having fun."`;
-      authorText.textContent = `– Albert Einstein`;
-      fadeIn(quoteText);
-      fadeIn(authorText);
-    });
+  try {
+    const response = await fetch("https://api.quotable.io/random?tags=motivational|inspirational");
+    const data = await response.json();
+
+    quoteText.textContent = `"${data.content}"`;
+    authorText.textContent = `– ${data.author}`;
+
+    fadeIn(quoteText);
+    fadeIn(authorText);
+  } catch (error) {
+    quoteText.textContent = `"Creativity is intelligence having fun."`;
+    authorText.textContent = `– Albert Einstein`;
+    fadeIn(quoteText);
+    fadeIn(authorText);
+  }
 }
 
-// Load quote on startup and on button click
+// Load quote on startup and when clicking "New Quote"
 loadQuote();
 refreshBtn.addEventListener("click", loadQuote);
 
-// ===== Weather API =====
+// =============================
+// 🌤️ Weather API (OpenWeatherMap)
+// =============================
 const weatherEl = document.getElementById("weather");
-const apiKey = "61057798ffe98e2e6e9dfdea7ba21f57";
+const apiKey = "61057798ffe98e2e6e9dfdea7ba21f57"; // ⚠️ your own free key here
 const city = "Malolos City,PH";
 
 fetch(`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&units=metric&appid=${apiKey}`)
