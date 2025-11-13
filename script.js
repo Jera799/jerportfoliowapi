@@ -23,7 +23,7 @@ const projectImages = [
 ];
 projectImages.forEach(src => { const img = new Image(); img.src = src; });
 
-// 💬 Quote API (API Ninjas)
+// 💬 Quote (quotable.io)
 const quoteText = document.getElementById("quote");
 const authorText = document.getElementById("author");
 const refreshBtn = document.getElementById("refresh-quote");
@@ -41,13 +41,10 @@ async function loadQuote() {
   authorText.style.opacity = 0;
 
   try {
-    const res = await fetch("https://api.api-ninjas.com/v1/quotes?category=motivational", {
-      headers: { 'X-Api-Key': 'Rp9w12XE3K1JLa1gvO2CxA==iz798xL6kVF4Q45C' }
-    });
+    const res = await fetch("https://api.quotable.io/random");
     const data = await res.json();
-    const quote = data[0];
-    quoteText.textContent = `"${quote.quote}"`;
-    authorText.textContent = `– ${quote.author}`;
+    quoteText.textContent = `"${data.content}"`;
+    authorText.textContent = `– ${data.author}`;
     fadeIn(quoteText);
     fadeIn(authorText);
   } catch {
@@ -57,6 +54,8 @@ async function loadQuote() {
     fadeIn(authorText);
   }
 }
+
+// Load first quote and attach button
 loadQuote();
 refreshBtn.addEventListener("click", loadQuote);
 
