@@ -34,22 +34,53 @@ projectImages.forEach(src => {
   img.src = src;
 });
 
-// Quote API
+// ===== Quote API =====
 const quoteText = document.getElementById("quote");
 const authorText = document.getElementById("author");
 
-fetch("https://api.quotable.io/random")
-  .then(res => res.json())
-  .then(data => {
-    quoteText.textContent = `"${data.content}"`;
-    authorText.textContent = `– ${data.author}`;
-  })
-  .catch(() => {
-    quoteText.textContent = `"Creativity is intelligence having fun."`;
-    authorText.textContent = `– Albert Einstein`;
-  });
+// Create a "New Quote" button dynamically
+const quoteSection = document.getElementById("quote-section");
+const refreshBtn = document.createElement("button");
+refreshBtn.textContent = "New Quote";
+refreshBtn.id = "refresh-quote";
+refreshBtn.style.marginTop = "10px";
+quoteSection.appendChild(refreshBtn);
 
-// Weather API
+// Fade animation function
+function fadeIn(element) {
+  element.style.opacity = 0;
+  element.style.transition = "opacity 0.8s ease";
+  requestAnimationFrame(() => {
+    element.style.opacity = 1;
+  });
+}
+
+// Function to load a quote
+function loadQuote() {
+  quoteText.textContent = "Loading quote...";
+  authorText.textContent = "";
+
+  fetch("https://api.quotable.io/random")
+    .then(res => res.json())
+    .then(data => {
+      quoteText.textContent = `"${data.content}"`;
+      authorText.textContent = `– ${data.author}`;
+      fadeIn(quoteText);
+      fadeIn(authorText);
+    })
+    .catch(() => {
+      quoteText.textContent = `"Creativity is intelligence having fun."`;
+      authorText.textContent = `– Albert Einstein`;
+      fadeIn(quoteText);
+      fadeIn(authorText);
+    });
+}
+
+// Load quote on startup and on button click
+loadQuote();
+refreshBtn.addEventListener("click", loadQuote);
+
+// ===== Weather API =====
 const weatherEl = document.getElementById("weather");
 const apiKey = "61057798ffe98e2e6e9dfdea7ba21f57";
 const city = "Malolos City,PH";
@@ -62,4 +93,3 @@ fetch(`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(ci
   .catch(() => {
     weatherEl.textContent = "Failed to load weather.";
   });
-
