@@ -23,7 +23,7 @@ function scrollToSection(sectionId) {
 }
 
 // =============================
-// 🖼️ Preload Project Images (to avoid lightbox lag)
+// 🖼️ Preload Project Images
 // =============================
 const projectImages = [
   'images/ss(1).png',
@@ -34,13 +34,14 @@ const projectImages = [
   'images/ss(6).png',
   'images/ss(7).png'
 ];
+
 projectImages.forEach(src => {
   const img = new Image();
   img.src = src;
 });
 
 // =============================
-// 💬 Quote API (Motivational & Random)
+// 💬 Quote API (API Ninjas)
 // =============================
 const quoteText = document.getElementById("quote");
 const authorText = document.getElementById("author");
@@ -62,7 +63,7 @@ function fadeIn(element) {
   });
 }
 
-// Function to load a quote
+// Load a quote from API Ninjas
 async function loadQuote() {
   quoteText.textContent = "Loading quote...";
   authorText.textContent = "";
@@ -70,31 +71,33 @@ async function loadQuote() {
   authorText.style.opacity = 0;
 
   try {
-    const response = await fetch("https://api.quotable.io/random?tags=motivational|inspirational");
+    const response = await fetch("https://api.api-ninjas.com/v1/quotes?category=motivational", {
+      headers: { 'X-Api-Key': 'Rp9w12XE3K1JLa1gvO2CxA==iz798xL6kVF4Q45C' }
+    });
     const data = await response.json();
+    const quote = data[0];
 
-    quoteText.textContent = `"${data.content}"`;
-    authorText.textContent = `– ${data.author}`;
-
+    quoteText.textContent = `"${quote.quote}"`;
+    authorText.textContent = `– ${quote.author}`;
     fadeIn(quoteText);
     fadeIn(authorText);
   } catch (error) {
-    quoteText.textContent = `"Creativity is intelligence having fun."`;
-    authorText.textContent = `– Albert Einstein`;
+    quoteText.textContent = `"Stay positive, work hard, make it happen."`;
+    authorText.textContent = "– Unknown";
     fadeIn(quoteText);
     fadeIn(authorText);
   }
 }
 
-// Load quote on startup and when clicking "New Quote"
+// Load quote on page load and on button click
 loadQuote();
 refreshBtn.addEventListener("click", loadQuote);
 
 // =============================
-// 🌤️ Weather API (OpenWeatherMap)
+// 🌤️ Weather API
 // =============================
 const weatherEl = document.getElementById("weather");
-const apiKey = "61057798ffe98e2e6e9dfdea7ba21f57"; // ⚠️ your own free key here
+const apiKey = "61057798ffe98e2e6e9dfdea7ba21f57";
 const city = "Malolos City,PH";
 
 fetch(`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&units=metric&appid=${apiKey}`)
@@ -105,4 +108,3 @@ fetch(`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(ci
   .catch(() => {
     weatherEl.textContent = "Failed to load weather.";
   });
-
