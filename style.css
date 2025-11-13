@@ -19,12 +19,12 @@ header {
   text-align: center;
   padding: 4rem 2rem;
   background: rgba(0, 0, 0, 0.5);
-  position: relative; /* needed for dashboard menu */
+  position: relative;
 }
 
 header h1 {
   font-size: 3rem;
-  color: #00fff0; /* bright teal */
+  color: #00fff0;
   margin: 0 0 1rem 0;
 }
 
@@ -54,7 +54,7 @@ header .profile-pic:hover {
 
 /* Dashboard Buttons */
 .dashboard {
-  position: fixed; /* always visible */
+  position: fixed;
   top: 20px;
   right: 30px;
   display: flex;
@@ -97,11 +97,6 @@ section {
 section:hover {
   transform: translateY(-5px);
   background: rgba(0, 128, 128, 0.4);
-}
-
-/* Tab sections (for dashboard) */
-.tab-section {
-  display: none; /* JS will show selected section */
 }
 
 /* Skills Section */
@@ -192,9 +187,9 @@ section:hover {
 
 #quote {
   font-style: italic;
+  font-size: 1.2em;
   margin: 0.5rem 0;
   transition: opacity 0.8s ease;
-  font-size: 1.2em;
 }
 
 #author {
@@ -202,6 +197,7 @@ section:hover {
   font-weight: bold;
   margin-top: 5px;
   margin-bottom: 1rem;
+  transition: opacity 0.8s ease;
 }
 
 #refresh-quote {
@@ -212,6 +208,7 @@ section:hover {
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  margin-top: 10px;
 }
 
 #refresh-quote:hover {
@@ -280,4 +277,3 @@ footer {
     padding: 0.4rem 0.6rem;
   }
 }
-
