@@ -1,6 +1,4 @@
-// =============================
 // 🌌 Lightbox
-// =============================
 function openLightbox(src) {
   const lb = document.getElementById('lightbox');
   const lbImg = document.getElementById('lightbox-img');
@@ -12,51 +10,30 @@ function closeLightbox() {
   document.getElementById('lightbox').style.display = 'none';
 }
 
-// =============================
 // 🧭 Scroll to Section
-// =============================
 function scrollToSection(sectionId) {
   const section = document.getElementById(sectionId);
-  if (section) {
-    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
+  if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-// =============================
 // 🖼️ Preload Project Images
-// =============================
 const projectImages = [
-  'images/ss(1).png',
-  'images/ss(2).png',
-  'images/ss(3).png',
-  'images/ss(4).png',
-  'images/ss(5).png',
-  'images/ss(6).png',
-  'images/ss(7).png'
+  'images/ss(1).png','images/ss(2).png','images/ss(3).png',
+  'images/ss(4).png','images/ss(5).png','images/ss(6).png','images/ss(7).png'
 ];
+projectImages.forEach(src => { const img = new Image(); img.src = src; });
 
-projectImages.forEach(src => {
-  const img = new Image();
-  img.src = src;
-});
-
-// =============================
 // 💬 Quote API (API Ninjas)
-// =============================
 const quoteText = document.getElementById("quote");
 const authorText = document.getElementById("author");
 const refreshBtn = document.getElementById("refresh-quote");
 
-// Fade helper
-function fadeIn(element) {
-  element.style.opacity = 0;
-  element.style.transition = "opacity 0.8s ease";
-  requestAnimationFrame(() => {
-    element.style.opacity = 1;
-  });
+function fadeIn(el) {
+  el.style.opacity = 0;
+  el.style.transition = "opacity 0.8s ease";
+  requestAnimationFrame(() => { el.style.opacity = 1; });
 }
 
-// Load quote from API Ninjas
 async function loadQuote() {
   quoteText.textContent = "Loading quote...";
   authorText.textContent = "";
@@ -64,32 +41,26 @@ async function loadQuote() {
   authorText.style.opacity = 0;
 
   try {
-    const response = await fetch("https://api.api-ninjas.com/v1/quotes?category=motivational", {
+    const res = await fetch("https://api.api-ninjas.com/v1/quotes?category=motivational", {
       headers: { 'X-Api-Key': 'Rp9w12XE3K1JLa1gvO2CxA==iz798xL6kVF4Q45C' }
     });
-    const data = await response.json();
+    const data = await res.json();
     const quote = data[0];
     quoteText.textContent = `"${quote.quote}"`;
     authorText.textContent = `– ${quote.author}`;
     fadeIn(quoteText);
     fadeIn(authorText);
-  } catch (error) {
+  } catch {
     quoteText.textContent = `"Stay positive, work hard, make it happen."`;
     authorText.textContent = "– Unknown";
     fadeIn(quoteText);
     fadeIn(authorText);
   }
 }
-
-// Load on page load
 loadQuote();
-
-// Refresh quote on button click
 refreshBtn.addEventListener("click", loadQuote);
 
-// =============================
 // 🌤️ Weather API
-// =============================
 const weatherEl = document.getElementById("weather");
 const apiKey = "61057798ffe98e2e6e9dfdea7ba21f57";
 const city = "Malolos City,PH";
@@ -99,6 +70,4 @@ fetch(`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(ci
   .then(data => {
     weatherEl.textContent = `${data.main.temp}°C, ${data.weather[0].description}, feels like ${data.main.feels_like}°C, humidity ${data.main.humidity}%`;
   })
-  .catch(() => {
-    weatherEl.textContent = "Failed to load weather.";
-  });
+  .catch(() => { weatherEl.textContent = "Failed to load weather."; });
