@@ -171,16 +171,17 @@ section:hover {
   box-shadow: 0 0 20px rgba(0,0,0,0.7);
 }
 
-/* Quote & Weather */
-#quote-section, #weather-section {
+/* Quote Section */
+#quote-section {
   max-width: 700px;
   margin: 2rem auto;
   padding: 1.5rem;
   background: rgba(0,0,0,0.6);
   border-radius: 10px;
+  text-align: center;
 }
 
-#quote-section h2, #weather-section h2 {
+#quote-section h2 {
   margin-bottom: 1rem;
   color: teal;
 }
@@ -189,15 +190,16 @@ section:hover {
   font-style: italic;
   font-size: 1.2em;
   margin: 0.5rem 0;
-  transition: opacity 0.8s ease;
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }
 
 #author {
   text-align: right;
   font-weight: bold;
-  margin-top: 5px;
-  margin-bottom: 1rem;
-  transition: opacity 0.8s ease;
+  margin: 5px 0 10px 0;
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }
 
 #refresh-quote {
@@ -207,8 +209,8 @@ section:hover {
   padding: 8px 16px;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
   margin-top: 10px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 #refresh-quote:hover {
@@ -216,7 +218,11 @@ section:hover {
   box-shadow: 0 0 10px #00fff0;
 }
 
-/* Weather text */
+/* Weather Section */
+#weather-section h2 {
+  color: teal;
+}
+
 #weather {
   font-weight: bold;
 }
@@ -243,76 +249,15 @@ footer {
 
 /* Responsive */
 @media (max-width: 768px) {
-  header h1 {
-    font-size: 2.5rem;
-  }
-  header .hero-text p {
-    font-size: 1rem;
-  }
-  .project-card img {
-    height: 130px;
-  }
-  header .profile-pic {
-    width: 120px;
-    height: 120px;
-  }
-  .dashboard {
-    flex-direction: column;
-    top: 10px;
-    right: 10px;
-  }
+  header h1 { font-size: 2.5rem; }
+  header .hero-text p { font-size: 1rem; }
+  .project-card img { height: 130px; }
+  header .profile-pic { width: 120px; height: 120px; }
+  .dashboard { flex-direction: column; top: 10px; right: 10px; }
 }
 
 @media (max-width: 480px) {
-  header h1 {
-    font-size: 2rem;
-  }
-  header .profile-pic {
-    width: 100px;
-    height: 100px;
-  }
-  #skills li {
-    min-width: 90px;
-    font-size: 0.85rem;
-    padding: 0.4rem 0.6rem;
-  }
-
-  /* Quote Section */
-#quote-section {
-  max-width: 700px;
-  margin: 2rem auto;
-  padding: 1.5rem;
-  background: rgba(0,0,0,0.6);
-  border-radius: 10px;
-  text-align: center;
+  header h1 { font-size: 2rem; }
+  header .profile-pic { width: 100px; height: 100px; }
+  #skills li { min-width: 90px; font-size: 0.85rem; padding: 0.4rem 0.6rem; }
 }
-
-#quote {
-  font-style: italic;
-  font-size: 1.2em;
-  margin: 0.5rem 0;
-  transition: opacity 0.8s ease;
-}
-
-#author {
-  text-align: right;
-  font-weight: bold;
-  margin: 5px 0 10px 0;
-}
-
-#refresh-quote {
-  background-color: #333;
-  color: #fff;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-#refresh-quote:hover {
-  background-color: #00aaa0;
-  box-shadow: 0 0 10px #00fff0;
-}
-}
-
