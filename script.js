@@ -13,7 +13,7 @@ function closeLightbox() {
 }
 
 // =============================
-// 🧭 Scroll to Section (Dashboard)
+// 🧭 Scroll to Section
 // =============================
 function scrollToSection(sectionId) {
   const section = document.getElementById(sectionId);
@@ -45,16 +45,9 @@ projectImages.forEach(src => {
 // =============================
 const quoteText = document.getElementById("quote");
 const authorText = document.getElementById("author");
+const refreshBtn = document.getElementById("refresh-quote");
 
-// Create a "New Quote" button dynamically
-const quoteSection = document.getElementById("quote-section");
-const refreshBtn = document.createElement("button");
-refreshBtn.textContent = "New Quote";
-refreshBtn.id = "refresh-quote";
-refreshBtn.style.marginTop = "10px";
-quoteSection.appendChild(refreshBtn);
-
-// Fade animation helper
+// Fade helper
 function fadeIn(element) {
   element.style.opacity = 0;
   element.style.transition = "opacity 0.8s ease";
@@ -63,7 +56,7 @@ function fadeIn(element) {
   });
 }
 
-// Load a quote from API Ninjas
+// Load quote from API Ninjas
 async function loadQuote() {
   quoteText.textContent = "Loading quote...";
   authorText.textContent = "";
@@ -76,7 +69,6 @@ async function loadQuote() {
     });
     const data = await response.json();
     const quote = data[0];
-
     quoteText.textContent = `"${quote.quote}"`;
     authorText.textContent = `– ${quote.author}`;
     fadeIn(quoteText);
@@ -89,8 +81,10 @@ async function loadQuote() {
   }
 }
 
-// Load quote on page load and on button click
+// Load on page load
 loadQuote();
+
+// Refresh quote on button click
 refreshBtn.addEventListener("click", loadQuote);
 
 // =============================
