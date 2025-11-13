@@ -52,6 +52,7 @@ header .profile-pic:hover {
   transform: scale(1.05);
 }
 
+/* Dashboard Buttons */
 .dashboard {
   position: fixed; /* always visible */
   top: 20px;
@@ -77,7 +78,6 @@ header .profile-pic:hover {
   text-shadow: 0 0 8px #00fff0, 0 0 15px #00fff0;
   transform: scale(1.1);
 }
-
 
 /* Main Sections */
 main {
@@ -193,14 +193,33 @@ section:hover {
 #quote {
   font-style: italic;
   margin: 0.5rem 0;
+  transition: opacity 0.8s ease;
+  font-size: 1.2em;
 }
 
 #author {
   text-align: right;
   font-weight: bold;
+  margin-top: 5px;
   margin-bottom: 1rem;
 }
 
+#refresh-quote {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#refresh-quote:hover {
+  background-color: #00aaa0;
+  box-shadow: 0 0 10px #00fff0;
+}
+
+/* Weather text */
 #weather {
   font-weight: bold;
 }
@@ -261,3 +280,4 @@ footer {
     padding: 0.4rem 0.6rem;
   }
 }
+
