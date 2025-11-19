@@ -9,6 +9,7 @@
 <body>
   <!-- Header / Hero Section -->
   <header>
+    <!-- Dashboard Menu -->
     <div class="dashboard">
       <button onclick="scrollToSection('projects')">Projects</button>
       <button onclick="scrollToSection('skills')">Skills</button>
@@ -17,6 +18,7 @@
 
     <div class="hero-text">
       <h1>Welcome</h1>
+      <!-- Header Image -->
       <img src="images/headerimage.png" alt="Jeramie" class="profile-pic">
       <h2>Hi, I'm Jeramie</h2>
       <p>Creative Designer</p>
@@ -26,82 +28,83 @@
     </div>
   </header>
 
-  <main>
-    <!-- Skills Section -->
-    <section id="skills">
-      <h2>My Skills</h2>
-      <ul>
-        <li>HTML, CSS, JavaScript</li>
-        <li>Responsive Web Design</li>
-        <li>UI/UX Design</li>
-        <li>Graphic Design</li>
-        <li>Adobe Photoshop / Illustrator</li>
-        <li>Figma / Prototyping</li>
-        <li>Version Control (Git/GitHub)</li>
-      </ul>
-    </section>
+<main>
+  <!-- Skills Section -->
+  <section id="skills" class="glass-card">
+    <h2>My Skills</h2>
+    <ul>
+      <li>HTML, CSS, JavaScript</li>
+      <li>Responsive Web Design</li>
+      <li>UI/UX Design</li>
+      <li>Graphic Design</li>
+      <li>Adobe Photoshop / Illustrator</li>
+      <li>Figma / Prototyping</li>
+      <li>Version Control (Git/GitHub)</li>
+    </ul>
+  </section>
 
-    <!-- Projects Section -->
-    <section id="projects">
-      <h2>My Projects</h2>
-      <div class="project-grid">
-        <div class="project-card">
-          <img src="images/ss(1).png" alt="Project 1" onclick="openLightbox('images/ss(1).png')">
-          <h3>Project 1</h3>
-        </div>
-        <div class="project-card">
-          <img src="images/ss(2).png" alt="Project 2" onclick="openLightbox('images/ss(2).png')">
-          <h3>Project 2</h3>
-        </div>
-        <div class="project-card">
-          <img src="images/ss(3).png" alt="Project 3" onclick="openLightbox('images/ss(3).png')">
-          <h3>Project 3</h3>
-        </div>
-        <div class="project-card">
-          <img src="images/ss(4).png" alt="Project 4" onclick="openLightbox('images/ss(4).png')">
-          <h3>Project 4</h3>
-        </div>
-        <div class="project-card">
-          <img src="images/ss(5).png" alt="Project 5" onclick="openLightbox('images/ss(5).png')">
-          <h3>Project 5</h3>
-        </div>
-        <div class="project-card">
-          <img src="images/ss(6).png" alt="Project 6" onclick="openLightbox('images/ss(6).png')">
-          <h3>Project 6</h3>
-        </div>
-        <div class="project-card">
-          <img src="images/ss(7).png" alt="Project 7" onclick="openLightbox('images/ss(7).png')">
-          <h3>Project 7</h3>
-        </div>
+  <!-- Projects Section -->
+  <section id="projects" class="glass-card">
+    <h2>My Projects</h2>
+
+    <div class="project-grid">
+      <div class="project-card">
+        <img src="images/ss(1).png" onclick="openLightbox('images/ss(1).png')">
+        <h3>Project 1</h3>
       </div>
 
-      <!-- Lightbox -->
-      <div id="lightbox" onclick="closeLightbox()">
-        <img id="lightbox-img" src="" alt="Expanded Project">
+      <div class="project-card">
+        <img src="images/ss(2).png" onclick="openLightbox('images/ss(2).png')">
+        <h3>Project 2</h3>
       </div>
-    </section>
 
-    <!-- Quote Section -->
-    <section id="quote-section">
-      <h2>Quote of the Moment</h2>
-      <blockquote id="quote">Loading quote...</blockquote>
-      <p id="author"></p>
-      <button id="refresh-quote">New Quote</button>
-    </section>
+      <div class="project-card">
+        <img src="images/ss(3).png" onclick="openLightbox('images/ss(3).png')">
+        <h3>Project 3</h3>
+      </div>
 
-    <!-- Weather Section -->
-    <section id="weather-section">
-      <h2>Current Weather - Malolos City, Bulacan</h2>
-      <p id="weather">Loading weather...</p>
-    </section>
+      <div class="project-card">
+        <img src="images/ss(4).png" onclick="openLightbox('images/ss(4).png')">
+        <h3>Project 4</h3>
+      </div>
 
-    <!-- Contact Section -->
-    <section id="contact-section">
-      <h2>Contact Me</h2>
-      <p>Email: <a href="mailto:kreebonky799@gmail.com">kreebonky799@gmail.com</a></p>
-    </section>
-  </main>
+      <div class="project-card">
+        <img src="images/ss(5).png" onclick="openLightbox('images/ss(5).png')">
+        <h3>Project 5</h3>
+      </div>
 
+      <div class="project-card">
+        <img src="images/ss(6).png" onclick="openLightbox('images/ss(6).png')">
+        <h3>Project 6</h3>
+      </div>
+
+      <div class="project-card">
+        <img src="images/ss(7).png" onclick="openLightbox('images/ss(7).png')">
+        <h3>Project 7</h3>
+      </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" onclick="closeLightbox()">
+      <img id="lightbox-img">
+    </div>
+  </section>
+
+  <!-- Weather -->
+  <section id="weather-section" class="glass-card">
+    <h2>Current Weather - Malolos City, Bulacan</h2>
+    <p id="weather">Loading weather...</p>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact-section" class="glass-card">
+    <h2>Contact Me</h2>
+    <p>Email: <a href="mailto:kreebonky799@gmail.com">kreebonky799@gmail.com</a></p>
+  </section>
+</main>
+
+
+  <!-- Footer -->
   <footer>
     <p>© 2025 Jeramie. All rights reserved.</p>
   </footer>
