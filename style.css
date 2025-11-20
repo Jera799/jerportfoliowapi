@@ -14,6 +14,7 @@ body {
   background-attachment: fixed;
 }
 
+
 /* Header / Hero */
 header {
   text-align: center;
@@ -22,11 +23,13 @@ header {
   position: relative; /* needed for dashboard menu */
 }
 
+
 header h1 {
   font-size: 3rem;
   color: #00fff0; /* bright teal */
   margin: 0 0 1rem 0;
 }
+
 
 header .hero-text p {
   font-size: 1.2rem;
@@ -36,6 +39,7 @@ header .hero-text p {
   color: white;
   text-align: center;
 }
+
 
 /* Profile / Header Image */
 header .profile-pic {
@@ -48,9 +52,11 @@ header .profile-pic {
   transition: transform 0.3s ease;
 }
 
+
 header .profile-pic:hover {
   transform: scale(1.05);
 }
+
 
 .dashboard {
   position: fixed; /* always visible */
@@ -60,6 +66,7 @@ header .profile-pic:hover {
   gap: 15px;
   z-index: 100;
 }
+
 
 .dashboard button {
   background: transparent;
@@ -72,6 +79,7 @@ header .profile-pic:hover {
   transition: 0.3s all ease;
 }
 
+
 .dashboard button:hover {
   color: #00fff0;
   text-shadow: 0 0 8px #00fff0, 0 0 15px #00fff0;
@@ -79,11 +87,14 @@ header .profile-pic:hover {
 }
 
 
+
+
 /* Main Sections */
 main {
   text-align: center;
   padding: 2rem;
 }
+
 
 section {
   margin: 2rem auto;
@@ -94,15 +105,18 @@ section {
   transition: transform 0.3s ease, background 0.3s ease;
 }
 
+
 section:hover {
   transform: translateY(-5px);
   background: rgba(0, 128, 128, 0.4);
 }
 
+
 /* Tab sections (for dashboard) */
 .tab-section {
   display: none; /* JS will show selected section */
 }
+
 
 /* Skills Section */
 #skills ul {
@@ -114,6 +128,7 @@ section:hover {
   justify-content: center;
 }
 
+
 #skills li {
   background: rgba(0, 128, 128, 0.2);
   margin: 0.5rem;
@@ -123,6 +138,7 @@ section:hover {
   text-align: center;
 }
 
+
 /* Projects Section */
 .project-grid {
   display: grid;
@@ -131,6 +147,7 @@ section:hover {
   margin-top: 1rem;
 }
 
+
 .project-card {
   background: rgba(0, 0, 0, 0.6);
   border-radius: 10px;
@@ -138,10 +155,12 @@ section:hover {
   transition: transform 0.3s ease, background 0.3s ease;
 }
 
+
 .project-card:hover {
   transform: translateY(-5px);
   background: rgba(0, 128, 128, 0.4);
 }
+
 
 .project-card img {
   width: 100%;
@@ -151,10 +170,12 @@ section:hover {
   border-bottom: 1px solid rgba(255,255,255,0.2);
 }
 
+
 .project-card h3 {
   margin: 0.5rem 0;
   color: teal;
 }
+
 
 /* Lightbox */
 #lightbox {
@@ -169,12 +190,14 @@ section:hover {
   cursor: pointer;
 }
 
+
 #lightbox img {
   max-width: 90%;
   max-height: 90%;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0,0,0,0.7);
 }
+
 
 /* Quote & Weather */
 #quote-section, #weather-section {
@@ -185,15 +208,18 @@ section:hover {
   border-radius: 10px;
 }
 
+
 #quote-section h2, #weather-section h2 {
   margin-bottom: 1rem;
   color: teal;
 }
 
+
 #quote {
   font-style: italic;
   margin: 0.5rem 0;
 }
+
 
 #author {
   text-align: right;
@@ -201,9 +227,11 @@ section:hover {
   margin-bottom: 1rem;
 }
 
+
 #weather {
   font-weight: bold;
 }
+
 
 /* Links */
 a {
@@ -212,9 +240,11 @@ a {
   transition: color 0.3s ease;
 }
 
+
 a:hover {
   color: white;
 }
+
 
 /* Footer */
 footer {
@@ -224,6 +254,7 @@ footer {
   margin-top: 2rem;
   font-size: 0.9rem;
 }
+
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -247,6 +278,7 @@ footer {
   }
 }
 
+
 @media (max-width: 480px) {
   header h1 {
     font-size: 2rem;
@@ -260,30 +292,4 @@ footer {
     font-size: 0.85rem;
     padding: 0.4rem 0.6rem;
   }
-
-  #quote {
-  transition: opacity 0.8s ease;
-  font-style: italic;
-  font-size: 1.2em;
-}
-
-#author {
-  margin-top: 5px;
-  font-weight: bold;
-}
-
-#refresh-quote {
-  background-color: #333;
-  color: #fff;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-#refresh-quote:hover {
-  background-color: #555;
-}
-
 }
