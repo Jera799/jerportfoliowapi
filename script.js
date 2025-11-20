@@ -39,23 +39,6 @@ projectImages.forEach(src => {
 });
 
 
-// Quote API
-const quoteText = document.getElementById("quote");
-const authorText = document.getElementById("author");
-
-
-fetch("https://api.quotable.io/random")
-  .then(res => res.json())
-  .then(data => {
-    quoteText.textContent = `"${data.content}"`;
-    authorText.textContent = `– ${data.author}`;
-  })
-  .catch(() => {
-    quoteText.textContent = `"Creativity is intelligence having fun."`;
-    authorText.textContent = `– Albert Einstein`;
-  });
-
-
 // Weather API
 const weatherEl = document.getElementById("weather");
 const apiKey = "61057798ffe98e2e6e9dfdea7ba21f57";
@@ -70,3 +53,4 @@ fetch(`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(ci
   .catch(() => {
     weatherEl.textContent = "Failed to load weather.";
   });
+
