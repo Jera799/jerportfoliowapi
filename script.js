@@ -6,9 +6,11 @@ function openLightbox(src) {
   lb.style.display = 'flex';
 }
 
+
 function closeLightbox() {
   document.getElementById('lightbox').style.display = 'none';
 }
+
 
 // Scroll to Section (Dashboard)
 function scrollToSection(sectionId) {
@@ -17,6 +19,7 @@ function scrollToSection(sectionId) {
     section.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }
+
 
 // Preload Project Images (to avoid lightbox lag)
 const projectImages = [
@@ -29,61 +32,35 @@ const projectImages = [
   'images/ss(7).png'
 ];
 
+
 projectImages.forEach(src => {
   const img = new Image();
   img.src = src;
 });
 
-// ===== Quote API =====
+
+// Quote API
 const quoteText = document.getElementById("quote");
 const authorText = document.getElementById("author");
 
-// Create a "New Quote" button dynamically
-const quoteSection = document.getElementById("quote-section");
-const refreshBtn = document.createElement("button");
-refreshBtn.textContent = "New Quote";
-refreshBtn.id = "refresh-quote";
-refreshBtn.style.marginTop = "10px";
-quoteSection.appendChild(refreshBtn);
 
-// Fade animation function
-function fadeIn(element) {
-  element.style.opacity = 0;
-  element.style.transition = "opacity 0.8s ease";
-  requestAnimationFrame(() => {
-    element.style.opacity = 1;
+fetch("https://api.quotable.io/random")
+  .then(res => res.json())
+  .then(data => {
+    quoteText.textContent = `"${data.content}"`;
+    authorText.textContent = `– ${data.author}`;
+  })
+  .catch(() => {
+    quoteText.textContent = `"Creativity is intelligence having fun."`;
+    authorText.textContent = `– Albert Einstein`;
   });
-}
 
-// Function to load a quote
-function loadQuote() {
-  quoteText.textContent = "Loading quote...";
-  authorText.textContent = "";
 
-  fetch("https://api.quotable.io/random")
-    .then(res => res.json())
-    .then(data => {
-      quoteText.textContent = `"${data.content}"`;
-      authorText.textContent = `– ${data.author}`;
-      fadeIn(quoteText);
-      fadeIn(authorText);
-    })
-    .catch(() => {
-      quoteText.textContent = `"Creativity is intelligence having fun."`;
-      authorText.textContent = `– Albert Einstein`;
-      fadeIn(quoteText);
-      fadeIn(authorText);
-    });
-}
-
-// Load quote on startup and on button click
-loadQuote();
-refreshBtn.addEventListener("click", loadQuote);
-
-// ===== Weather API =====
+// Weather API
 const weatherEl = document.getElementById("weather");
 const apiKey = "61057798ffe98e2e6e9dfdea7ba21f57";
 const city = "Malolos City,PH";
+
 
 fetch(`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&units=metric&appid=${apiKey}`)
   .then(res => res.json())
