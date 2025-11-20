@@ -3,33 +3,38 @@ body {
   margin: 0;
   font-family: 'Arial', sans-serif;
   color: white;
-  background-color: black;
-  background-size: cover;
-  background-position: center;
-  transition: background-image 1s ease-in-out;
-  background-image:
-    linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
-  background-size: 50px 50px;
-  background-attachment: fixed;
+  background: black;
+  overflow-x: hidden;
 }
 
+/* Canvas background handled by JS */
+#background-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
 
 /* Header / Hero */
 header {
   text-align: center;
   padding: 4rem 2rem;
   background: rgba(0, 0, 0, 0.5);
-  position: relative; /* needed for dashboard menu */
+  position: relative;
 }
-
 
 header h1 {
   font-size: 3rem;
-  color: #00fff0; /* bright teal */
+  color: #00fff0;
   margin: 0 0 1rem 0;
 }
 
+header h2 {
+  color: teal;
+  text-shadow: 0 0 8px #00fff0, 0 0 15px teal;
+}
 
 header .hero-text p {
   font-size: 1.2rem;
@@ -40,8 +45,6 @@ header .hero-text p {
   text-align: center;
 }
 
-
-/* Profile / Header Image */
 header .profile-pic {
   width: 150px;
   height: 150px;
@@ -52,21 +55,19 @@ header .profile-pic {
   transition: transform 0.3s ease;
 }
 
-
 header .profile-pic:hover {
   transform: scale(1.05);
 }
 
-
+/* Dashboard Menu */
 .dashboard {
-  position: fixed; /* always visible */
+  position: fixed;
   top: 20px;
   right: 30px;
   display: flex;
   gap: 15px;
   z-index: 100;
 }
-
 
 .dashboard button {
   background: transparent;
@@ -79,46 +80,45 @@ header .profile-pic:hover {
   transition: 0.3s all ease;
 }
 
-
 .dashboard button:hover {
   color: #00fff0;
   text-shadow: 0 0 8px #00fff0, 0 0 15px #00fff0;
   transform: scale(1.1);
 }
 
-
-
-
-/* Main Sections */
-main {
-  text-align: center;
-  padding: 2rem;
-}
-
-
+/* Sections */
 section {
   margin: 2rem auto;
   padding: 1.5rem;
   background: rgba(0, 0, 0, 0.6);
   border-radius: 10px;
-  max-width: 900px;
-  transition: transform 0.3s ease, background 0.3s ease;
+  border: 2px solid teal;
+  box-shadow: 0 0 15px teal, 0 0 30px #00fff0;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
-
 
 section:hover {
   transform: translateY(-5px);
-  background: rgba(0, 128, 128, 0.4);
+  background: rgba(0, 128, 128, 0.2);
+  box-shadow: 0 0 25px #00fff0, 0 0 50px teal;
 }
 
-
-/* Tab sections (for dashboard) */
-.tab-section {
-  display: none; /* JS will show selected section */
+section h2 {
+  color: teal;
+  text-shadow: 0 0 8px #00fff0, 0 0 15px teal;
 }
 
+/* Glowing divider */
+.glow-divider {
+  width: 80%;
+  height: 2px;
+  margin: 3rem auto;
+  background: teal;
+  box-shadow: 0 0 10px #00fff0, 0 0 20px teal;
+  border-radius: 5px;
+}
 
-/* Skills Section */
+/* Skills */
 #skills ul {
   list-style: none;
   padding: 0;
@@ -127,7 +127,6 @@ section:hover {
   flex-wrap: wrap;
   justify-content: center;
 }
-
 
 #skills li {
   background: rgba(0, 128, 128, 0.2);
@@ -138,15 +137,13 @@ section:hover {
   text-align: center;
 }
 
-
-/* Projects Section */
+/* Projects */
 .project-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 1.5rem;
   margin-top: 1rem;
 }
-
 
 .project-card {
   background: rgba(0, 0, 0, 0.6);
@@ -155,12 +152,10 @@ section:hover {
   transition: transform 0.3s ease, background 0.3s ease;
 }
 
-
 .project-card:hover {
   transform: translateY(-5px);
   background: rgba(0, 128, 128, 0.4);
 }
-
 
 .project-card img {
   width: 100%;
@@ -170,12 +165,10 @@ section:hover {
   border-bottom: 1px solid rgba(255,255,255,0.2);
 }
 
-
 .project-card h3 {
   margin: 0.5rem 0;
   color: teal;
 }
-
 
 /* Lightbox */
 #lightbox {
@@ -190,7 +183,6 @@ section:hover {
   cursor: pointer;
 }
 
-
 #lightbox img {
   max-width: 90%;
   max-height: 90%;
@@ -198,40 +190,10 @@ section:hover {
   box-shadow: 0 0 20px rgba(0,0,0,0.7);
 }
 
-
-/* Quote & Weather */
-#quote-section, #weather-section {
-  max-width: 700px;
-  margin: 2rem auto;
-  padding: 1.5rem;
-  background: rgba(0,0,0,0.6);
-  border-radius: 10px;
-}
-
-
-#quote-section h2, #weather-section h2 {
-  margin-bottom: 1rem;
-  color: teal;
-}
-
-
-#quote {
-  font-style: italic;
-  margin: 0.5rem 0;
-}
-
-
-#author {
-  text-align: right;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-
+/* Weather */
 #weather {
   font-weight: bold;
 }
-
 
 /* Links */
 a {
@@ -240,11 +202,9 @@ a {
   transition: color 0.3s ease;
 }
 
-
 a:hover {
   color: white;
 }
-
 
 /* Footer */
 footer {
@@ -255,41 +215,18 @@ footer {
   font-size: 0.9rem;
 }
 
-
 /* Responsive */
 @media (max-width: 768px) {
-  header h1 {
-    font-size: 2.5rem;
-  }
-  header .hero-text p {
-    font-size: 1rem;
-  }
-  .project-card img {
-    height: 130px;
-  }
-  header .profile-pic {
-    width: 120px;
-    height: 120px;
-  }
-  .dashboard {
-    flex-direction: column;
-    top: 10px;
-    right: 10px;
-  }
+  header h1 { font-size: 2.5rem; }
+  header .hero-text p { font-size: 1rem; }
+  .project-card img { height: 130px; }
+  header .profile-pic { width: 120px; height: 120px; }
+  .dashboard { flex-direction: column; top: 10px; right: 10px; }
 }
-
 
 @media (max-width: 480px) {
-  header h1 {
-    font-size: 2rem;
-  }
-  header .profile-pic {
-    width: 100px;
-    height: 100px;
-  }
-  #skills li {
-    min-width: 90px;
-    font-size: 0.85rem;
-    padding: 0.4rem 0.6rem;
-  }
+  header h1 { font-size: 2rem; }
+  header .profile-pic { width: 100px; height: 100px; }
+  #skills li { min-width: 90px; font-size: 0.85rem; padding: 0.4rem 0.6rem; }
 }
+
